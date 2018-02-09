@@ -2,14 +2,16 @@ package com.company;
 
 import java.util.Scanner;
 
+import static com.company.Main.mainMenu;
+
 /*
 MAIN LIBRARY
 holds all games
  */
-public class MainLibrary {
+public class MainLibrary extends Game {
 
-    Game game = new Game();
-    String mainLibraryStorage[] = new String[20];
+    private String mainLibraryStorage[] = new String[20];
+    private Scanner input = new Scanner(System.in);
 
     //method to add game to library
     protected void addGame() {
@@ -17,10 +19,10 @@ public class MainLibrary {
 
         for (int g = 0; g <= 25; g++) {
             System.out.println("Enter a game to add to your main library: ");
-            Scanner input = new Scanner(System.in);
-            mainLibraryStorage[g] = input.nextLine();
+            setGameTitle() = input.nextLine();
+//            mainLibraryStorage[g] = input.nextLine();
             //add verification. if/then.
-            System.out.println("You have added " + game.getGameTitle() + " to your main library."); //confirmation
+            System.out.println("You have added " + getGameTitle() + " to your main library."); //confirmation
             viewMainLibrary();
         }
 
@@ -35,6 +37,8 @@ public class MainLibrary {
 
     //method to view main library
     protected void viewMainLibrary() {
+
+        mainMenu.startMenu();
 
         //code to view main library
     }

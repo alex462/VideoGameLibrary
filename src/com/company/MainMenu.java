@@ -4,7 +4,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 //Main menu with all program handling options
 
-public class MainMenu {
+public class MainMenu extends Game {
 
     MainLibrary mainLibrary = new MainLibrary();
     CheckoutLibrary checkoutLibrary = new CheckoutLibrary();

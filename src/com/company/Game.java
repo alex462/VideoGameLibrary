@@ -1,28 +1,33 @@
 package com.company;
 
 
-//method to create game
-public class Game {
+import java.util.Scanner;
 
-    private String gameTitle;
+//method to create game
+public abstract class Game {
+
+    protected String gameTitle;
     private String checkoutDate;
     private String dueDate;
+    private Scanner input = new Scanner(System.in);
 
-    public Game(String gameTitle) {
+    public Game() {
         this.gameTitle = gameTitle; //this class's version of gameTitle
         checkoutDate = ""; //blank string prevents null return
         dueDate = "";
     }
 
-    public Game() {
-    }
+//    public Game() {
+//    }
 
     public String getGameTitle() {
         return gameTitle;
     }
 
-    public void setGameTitle(String gameTitle) {
-        this.gameTitle = gameTitle;
+    public void setGameTitle() {
+
+        this.gameTitle = input.nextLine();
+
     }
 
     public String getCheckoutDate() {
