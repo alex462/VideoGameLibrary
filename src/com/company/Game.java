@@ -10,15 +10,26 @@ public abstract class Game {
     private String checkoutDate;
     private String dueDate;
     private Scanner input = new Scanner(System.in);
+    private Scanner choiceInput = new Scanner(System.in);
+    protected String choice;
 
     public Game() {
-        this.gameTitle = gameTitle; //this class's version of gameTitle
+        this.gameTitle = getGameTitle(); //this class's version of gameTitle
         checkoutDate = ""; //blank string prevents null return
         dueDate = "";
     }
 
 //    public Game() {
 //    }
+
+
+    public String getChoice() {
+        return choice;
+    }
+
+    public void setChoice() {
+        this.choice = choiceInput.nextLine();
+    }
 
     public String getGameTitle() {
         return gameTitle;
