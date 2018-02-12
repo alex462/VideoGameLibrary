@@ -13,95 +13,97 @@ holds all games
  */
 public class MainLibrary extends Game {
 //    MainMenu mainMenu = new MainMenu();
+    /**
+     * instantiating main menu here causes a billion errors. WHY??
+     */
+
     private Scanner input = new Scanner(System.in);
     private Scanner choiceInput = new Scanner(System.in);
+    private boolean isValidInput;
 //    private String choice;
 
-    List<String> mainLibArrayList = new ArrayList();
-
-
-    public void createMainLibrary() {
-
-//        int position = 1;
-        for (int i = 0; i < mainLibArrayList.size(); i++) {
-            mainLibArrayList.add(getGameTitle());
-        }
-        addAnotherGame();
-
-
-    }
+//    List<String> mainLibArrayList = new ArrayList();
+//
+//
+//    public void createMainLibrary() {
+//
+////        int position = 1;
+//        for (int i = 0; i < mainLibArrayList.size(); i++) {
+//            mainLibArrayList.add(getGameTitle());
+//        }
+//        addAnotherGame();
+//
+//
+//    }
 
     //method to add game to library
     public void addGame() {
-        System.out.println("Enter a game title to add to your main library: ");
-        setGameTitle();
 
-        System.out.println("Are you sure you want to add " + getGameTitle() + " to your main library?");
-        System.out.println("1. yes\n2. no; return to main menu\n3. close program");
+        isValidInput = false;
+        while (!isValidInput) {
+            System.out.println("Enter a game title to add to your main library: ");
+            setGameTitle();
 
-        try {
+            System.out.println("Are you sure you want to add " + getGameTitle() + " to your main library?");
+            System.out.println("1. Yes\n2. No; return to main menu\n3. Exit program");
 
-            switch (input.nextInt()) {
+            switch (input.nextLine()) {
 
-                case 1: //yes
+                case "1": //yes
                     System.out.println("You have added " + getGameTitle() + " to your main library.");
-                    createMainLibrary();
+                    mainLibArrayList.add(getGameTitle());
+                    addAnotherGame();
+                    isValidInput = true;
                     break;
 
-                case 2: //no; main menu
+                case "2": //no; main menu
                     MainMenu mainMenu = new MainMenu();
                     mainMenu.startMenu();
+                    isValidInput = true;
                     break;
 
-                case 3: //exit
-                    System.out.println("\nThank you for using the video game library.");
-                    System.exit(13);
+                case "3": //exit
+                    exitProgram();
+                    isValidInput = true;
                     break;
 
                 default: //incorrect user input - prompt user for correct number, loop back to MainMenu
-                    System.out.println("\n Invalid entry\n");
-                    input.nextLine();
-                    addGame();
+                    invalidEntry();
+                    isValidInput = false;
             }
-
-        }catch(InputMismatchException ime){
-            System.out.println("\n Invalid entry\n");
-            input.nextLine();
-            addGame();
         }
     }
 
     public void addAnotherGame() {
 
+        isValidInput = false;
+        while (!isValidInput) {
+
         System.out.println("Would you like to add another game?");
-        System.out.println("1. yes\n2. no; return to main menu\n3. close program");
+            System.out.println("1. Yes\n2. No; return to main menu\n3. Exit program");
 
-        try {
+            switch (input.nextLine()) {
 
-            switch (input.nextInt()) {
-
-                case 1: //yes
+                case "1": //yes
                     addGame();
+                    isValidInput = true;
                     break;
 
-                case 2: //no; main menu
+                case "2": //no; main menu
                     MainMenu mainMenu = new MainMenu();
                     mainMenu.startMenu();
+                    isValidInput = true;
                     break;
 
-                case 3: //exit
-                    System.out.println("\nThank you for using the video game library.");
-                    System.exit(13);
+                case "3": //exit
+                    exitProgram();
+                    isValidInput = true;
                     break;
 
                 default: //incorrect user input - prompt user for correct number, loop back to MainMenu
-                    System.out.println("\n Invalid entry\n");
-                    addAnotherGame();
+                    invalidEntry();
+                    isValidInput = false;
             }
-
-        }catch(InputMismatchException ime){
-            System.out.println("\n Invalid entry\n");
-            addAnotherGame();
         }
     }
 
@@ -117,8 +119,8 @@ public class MainLibrary extends Game {
 
         int position = 1;
 
-            System.out.println(position + ". " + mainLibArrayList);
-            position++;
+        System.out.println(position + ". " + mainLibArrayList);
+        position++;
 
         MainMenu mainMenu = new MainMenu();
         mainMenu.startMenu();
@@ -132,5 +134,16 @@ public class MainLibrary extends Game {
     protected void mainLibraryGames() {
 
 //        mainMenu.startMenu(); //extend MainLibrary from MainMenu class?
+    }
+
+    public void exitProgram(){
+
+        System.out.println("\nThank you for using the video game library.");
+        System.exit(13);
+    }
+
+    public void invalidEntry () {
+
+        System.out.println("Invalid entry.");
     }
 }

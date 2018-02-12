@@ -1,6 +1,8 @@
 package com.company;
 
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 //method to create game
@@ -12,16 +14,54 @@ public abstract class Game {
     protected Scanner input = new Scanner(System.in);
     private Scanner choiceInput = new Scanner(System.in);
     protected String choice;
+    List<String> mainLibArrayList = new ArrayList();
+    List<String> checkoutLibArrayList = new ArrayList();
 
     public Game() {
         this.gameTitle = getGameTitle(); //this class's version of gameTitle
+        this.mainLibArrayList = mainLibArrayList;
+        this.checkoutLibArrayList = checkoutLibArrayList;
         checkoutDate = ""; //blank string prevents null return
         dueDate = "";
     }
 
+
 //    public Game() {
 //    }
 
+//    public void createCheckoutLibrary() {
+//        List<String> checkoutLibArrayList = new ArrayList();
+////        int position = 1;
+//        for (int i = 0; i < checkoutLibArrayList.size(); i++) {
+//            checkoutLibArrayList.add(getGameTitle());
+//        }
+//        mainLibrary.checkInAnotherGame();
+//
+//
+//    }
+
+
+    public List<String> getMainLibArrayList() {
+        return mainLibArrayList;
+    }
+
+    public void setMainLibArrayList(List<String> mainLibArrayList) {
+
+        for (int i = 0; i < mainLibArrayList.size(); i++) {
+            this.mainLibArrayList = mainLibArrayList;
+        }
+    }
+
+    public List<String> getCheckoutLibArrayList() {
+        return checkoutLibArrayList;
+    }
+
+    public void setCheckoutLibArrayList() {
+
+        for (int i = 0; i < checkoutLibArrayList.size(); i++) {
+            this.checkoutLibArrayList = checkoutLibArrayList;
+        }
+    }
 
     public String getChoice() {
         return choice;
