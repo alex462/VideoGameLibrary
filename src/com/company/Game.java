@@ -9,7 +9,7 @@ public abstract class Game {
     protected String gameTitle;
     private String checkoutDate;
     private String dueDate;
-    private Scanner input = new Scanner(System.in);
+    protected Scanner input = new Scanner(System.in);
     private Scanner choiceInput = new Scanner(System.in);
     protected String choice;
 
@@ -28,6 +28,7 @@ public abstract class Game {
     }
 
     public void setChoice() {
+//        Scanner choiceInput = new Scanner(System.in);
         this.choice = choiceInput.nextLine();
     }
 
