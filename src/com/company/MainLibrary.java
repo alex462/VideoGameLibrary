@@ -22,7 +22,7 @@ public class MainLibrary extends Game {
     private boolean isValidInput;
 //    private String choice;
 
-//    List<String> mainLibArrayList = new ArrayList();
+//    private List<String> mainLibArrayList = new ArrayList();
 //
 //
 //    public void createMainLibrary() {
@@ -34,6 +34,12 @@ public class MainLibrary extends Game {
 //        addAnotherGame();
 //
 //
+//    }
+//    public void add(){
+//        List<String> mainLibArrayList = new ArrayList();
+//        while(true){
+//
+//        }
 //    }
 
     //method to add game to library
@@ -50,11 +56,17 @@ public class MainLibrary extends Game {
             switch (input.nextLine()) {
 
                 case "1": //yes
-                    System.out.println("You have added " + getGameTitle() + " to your main library.");
-                    mainLibArrayList.add(getGameTitle());
-                    addAnotherGame();
-                    isValidInput = true;
-                    break;
+
+
+                    do{
+                        System.out.println("You have added " + getGameTitle() + " to your main library.");
+                        List<String> mainLibArrayList = new ArrayList();
+                        mainLibArrayList.add(getGameTitle());
+                        addAnotherGame();
+                        isValidInput = true;
+                        break;
+                    }while(input.nextLine().equals("1"));
+
 
                 case "2": //no; main menu
                     MainMenu mainMenu = new MainMenu();
@@ -116,7 +128,7 @@ public class MainLibrary extends Game {
     //method to view main library
     protected void viewMainLibrary() {
         System.out.println("MAIN LIBRARY");
-
+        getMainLibArrayList();
         int position = 1;
 
         System.out.println(position + ". " + mainLibArrayList);

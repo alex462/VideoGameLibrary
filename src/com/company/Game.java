@@ -14,13 +14,11 @@ public abstract class Game {
     protected Scanner input = new Scanner(System.in);
     private Scanner choiceInput = new Scanner(System.in);
     protected String choice;
-    List<String> mainLibArrayList = new ArrayList();
-    List<String> checkoutLibArrayList = new ArrayList();
+    List<String> mainLibArrayList;
+    List<String> checkoutLibArrayList;
 
     public Game() {
         this.gameTitle = getGameTitle(); //this class's version of gameTitle
-        this.mainLibArrayList = mainLibArrayList;
-        this.checkoutLibArrayList = checkoutLibArrayList;
         checkoutDate = ""; //blank string prevents null return
         dueDate = "";
     }
@@ -45,7 +43,7 @@ public abstract class Game {
         return mainLibArrayList;
     }
 
-    public void setMainLibArrayList(List<String> mainLibArrayList) {
+    public void setMainLibArrayList() {
 
         for (int i = 0; i < mainLibArrayList.size(); i++) {
             this.mainLibArrayList = mainLibArrayList;
