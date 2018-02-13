@@ -6,19 +6,17 @@ import java.util.List;
 import java.util.Scanner;
 
 //method to create game
-public abstract class Game {
+public class Game {
 
     protected String gameTitle;
     private String checkoutDate;
     private String dueDate;
     protected Scanner input = new Scanner(System.in);
-    private Scanner choiceInput = new Scanner(System.in);
-    protected String choice;
-    List<String> mainLibArrayList;
-    List<String> checkoutLibArrayList;
+//    protected String choice;
 
-    public Game() {
-        this.gameTitle = getGameTitle(); //this class's version of gameTitle
+
+    public Game(String gameTitle) {
+        this.gameTitle = gameTitle; //this class's version of gameTitle
         checkoutDate = ""; //blank string prevents null return
         dueDate = "";
     }
@@ -39,49 +37,24 @@ public abstract class Game {
 //    }
 
 
-    public List<String> getMainLibArrayList() {
-        return mainLibArrayList;
-    }
 
-    public void setMainLibArrayList() {
-
-        for (int i = 0; i < mainLibArrayList.size(); i++) {
-            this.mainLibArrayList = mainLibArrayList;
-        }
-    }
-
-    public List<String> getCheckoutLibArrayList() {
-        return checkoutLibArrayList;
-    }
-
-    public void setCheckoutLibArrayList() {
-
-        for (int i = 0; i < checkoutLibArrayList.size(); i++) {
-            this.checkoutLibArrayList = checkoutLibArrayList;
-        }
-    }
-
-    public String getChoice() {
-        return choice;
-    }
-
-    public void setChoice() {
-//        Scanner choiceInput = new Scanner(System.in);
-        this.choice = choiceInput.nextLine();
-    }
+//    public String getChoice() {
+//        return choice;
+//    }
+//
+//    public void setChoice() {
+////        Scanner choiceInput = new Scanner(System.in);
+//        this.choice = choiceInput.nextLine();
+//    }
 
     public String getGameTitle() {
         return gameTitle;
     }
 
-    public void setGameTitle() {
+    public void setGameTitle(String gameTitle) {
 
-        this.gameTitle = input.nextLine();
+        this.gameTitle = gameTitle;
 
-    }
-
-    public String getCheckoutDate() {
-        return checkoutDate;
     }
 
     public void setCheckoutDate(String checkoutDate) {

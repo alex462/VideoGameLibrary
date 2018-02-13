@@ -6,8 +6,8 @@ import java.util.Scanner;
 
 public class MainMenu {
 
-    MainLibrary mainLibrary = new MainLibrary();
-    CheckoutLibrary checkoutLibrary = new CheckoutLibrary();
+    protected MainLibrary mainLibrary = new MainLibrary(this);
+    private CheckoutLibrary checkoutLibrary = new CheckoutLibrary(this);
     private boolean isValidInput;
     private Scanner input = new Scanner(System.in);
 
@@ -51,17 +51,17 @@ public class MainMenu {
                     break;
 
                 case "4": //view checked out VGs
-                    checkoutLibrary.viewCheckoutLibrary();
+                    mainLibrary.viewCheckoutLibrary();
                     isValidInput = true;
                     break;
 
                 case "5": //check out VG
-                    checkoutLibrary.checkOutGame();
+                    mainLibrary.checkOutGame();
                     isValidInput = true;
                     break;
 
                 case "6": //check in game
-                    checkoutLibrary.checkInGame();
+                    mainLibrary.checkInGame();
                     isValidInput = true;
                     break;
 
