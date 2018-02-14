@@ -15,36 +15,16 @@ public class Game {
 //    protected String choice;
 
 
-    public Game(String gameTitle) {
+    public Game() {
         this.gameTitle = gameTitle; //this class's version of gameTitle
         checkoutDate = ""; //blank string prevents null return
         dueDate = "";
     }
 
-
-//    public Game() {
-//    }
-
-//    public void createCheckoutLibrary() {
-//        List<String> checkoutLibArrayList = new ArrayList();
-////        int position = 1;
-//        for (int i = 0; i < checkoutLibArrayList.size(); i++) {
-//            checkoutLibArrayList.add(getGameTitle());
-//        }
-//        mainLibrary.checkInAnotherGame();
-//
-//
-//    }
-
-
-
-//    public String getChoice() {
-//        return choice;
-//    }
-//
-//    public void setChoice() {
-////        Scanner choiceInput = new Scanner(System.in);
-//        this.choice = choiceInput.nextLine();
+//    public Game(){
+//        this.gameTitle = gameTitle; //this class's version of gameTitle
+//        checkoutDate = ""; //blank string prevents null return
+//        dueDate = "";
 //    }
 
     public String getGameTitle() {
@@ -53,7 +33,7 @@ public class Game {
 
     public void setGameTitle(String gameTitle) {
 
-        this.gameTitle = gameTitle;
+        this.gameTitle = input.nextLine();
 
     }
 

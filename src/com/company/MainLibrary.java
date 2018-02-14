@@ -13,52 +13,32 @@ public class MainLibrary {
 
     public final MainMenu mainMenu;//any class can use this; i don't want it to ever be modified. must create a constructor.
 
-//    private List<Game> mainLibrary = new ArrayList<Game>();
-//    private List<Game> checkoutLibrary = new ArrayList<Game>(); //using list instead of array because they are flexible
+    private List<Game> mainLibArrayList = new ArrayList<Game>();
+    private List<Game> checkoutLibArrayList = new ArrayList<Game>();
     private SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yy HH:mm:ss");
 
     private Scanner input = new Scanner(System.in);
     private boolean isValidInput;
 
-    private List<Game> mainLibArrayList = new ArrayList<Game>();
-    private List<Game> checkoutLibArrayList = new ArrayList<Game>();
-
-//    public List<Game> getMainLibArrayList() {
-//        return mainLibArrayList;
-//    }
-//
-//    public void setMainLibArrayList() {
-//
-//        for (int i = 0; i < mainLibArrayList.size(); i++) {
-//            this.mainLibArrayList = mainLibArrayList;
-//        }
-//    }
-//
-//    public List<Game> getCheckoutLibArrayList() {
-//        return checkoutLibArrayList;
-//    }
-//
-//    public void setCheckoutLibArrayList() {
-//
-//        for (int i = 0; i < checkoutLibArrayList.size(); i++) {
-//            this.checkoutLibArrayList = checkoutLibArrayList;
-//        }
-//    }
-
-
-    public MainLibrary(MainMenu mainMenu) {
+    protected MainLibrary(MainMenu mainMenu) {
         this.mainMenu = mainMenu;
     }
 
+    protected void add(Game game) { //will not run unless a parameter of game type passed into it
+        //Code goes here to add game to where ever we are saving game things to
+        mainLibArrayList.add(game);
+        mainMenu.startMenu();
+    }
+
     //method to add game to library
-    public void addGame() {
+    protected void addGame() {
 
         isValidInput = false;
         while (!isValidInput) {
             System.out.println("Enter a game title to add to your main library: ");
 
-            Game game = new Game(input.nextLine());
-//            game.setGameTitle();
+            Game game = new Game();
+            game.setGameTitle(input.nextLine());
 
             System.out.println("Are you sure you want to add " + game.getGameTitle() + " to your main library?");
             System.out.println("1. Yes\n2. No; return to main menu\n3. Exit program");
@@ -89,7 +69,7 @@ public class MainLibrary {
         }
     }
 
-    public void addAnotherGame() {
+    protected void addAnotherGame() {
 
         isValidInput = false;
         while (!isValidInput) {
@@ -122,7 +102,7 @@ public class MainLibrary {
     }
 
     //method to remove game from main library
-    public void removeGame() {
+    protected void removeGame() {
 
         if(mainLibArrayList.size() > 0) { //if/else stmt prevents method from running if there are no games in library to remove
 
@@ -138,8 +118,8 @@ public class MainLibrary {
             }
             System.out.println("Enter a game title to remove from your main library: ");
 
-            Game game = new Game(input.nextLine());
-//            game.setGameTitle();
+            Game game = new Game();
+            game.setGameTitle(input.nextLine());
 
             System.out.println("Are you sure you want to add " + game.getGameTitle() + " to your main library?");
             System.out.println("1. Yes\n2. No; return to main menu\n3. Exit program");
@@ -176,12 +156,12 @@ public class MainLibrary {
 
     }
 
-    public void removeAnotherGame(){
+    protected void removeAnotherGame(){
 
     }
 
     //method to view main library
-    public void viewMainLibrary() {
+    protected void viewMainLibrary() {
 
         System.out.println("MAIN LIBRARY");
 
@@ -204,7 +184,7 @@ public class MainLibrary {
     }
 
     //method to add game to library
-    public void checkInGame() {
+    protected void checkInGame() {
 
         if(checkoutLibArrayList.size() > 0) { //if/else stmt prevents method from running if there are no games in checkout to remove
 
@@ -213,8 +193,8 @@ public class MainLibrary {
 
             System.out.println("Enter a game title to check in to your main library: ");
 
-            Game game = new Game(input.nextLine());
-//            game.setGameTitle();
+            Game game = new Game();
+            game.setGameTitle(input.nextLine());
 
             System.out.println("Are you sure you want to check in " + game.getGameTitle() + "?");
             System.out.println("1. Yes\n2. No; return to main menu\n3. Exit program");
@@ -251,7 +231,7 @@ public class MainLibrary {
         }
     }
 
-    public void checkInAnotherGame() {
+    protected void checkInAnotherGame() {
 
         isValidInput = false;
         while (!isValidInput) {
@@ -284,15 +264,15 @@ public class MainLibrary {
     }
 
     //method to remove game from checkout library
-    public void checkOutGame() {
+    protected void checkOutGame() {
 
         isValidInput = false;
         while (!isValidInput) {
 
             System.out.println("Enter a game title to check out of your main library: ");
 
-            Game game = new Game(input.nextLine());
-//            game.setGameTitle();
+            Game game = new Game();
+            game.setGameTitle(input.nextLine());
 
             System.out.println("Are you sure you want to check out " + game.getGameTitle() + "?");
             System.out.println("1. Yes\n2. No; return to main menu\n3. Exit program");
@@ -325,12 +305,12 @@ public class MainLibrary {
         }
     }
 
-    public void checkoutAnotherGame(){
+    protected void checkoutAnotherGame(){
 
     }
 
     //method to view checkout library
-    public void viewCheckoutLibrary() {
+    protected void viewCheckoutLibrary() {
 
         System.out.println("CHECKED-OUT VIDEO GAMES");
 
@@ -344,13 +324,13 @@ public class MainLibrary {
     }
 
 
-    public void exitProgram(){
+    protected void exitProgram(){
 
         System.out.println("\nThank you for using the video game library.");
         System.exit(13);
     }
 
-    public void invalidEntry () {
+    protected void invalidEntry () {
 
         System.out.println("Invalid entry.");
     }

@@ -1,13 +1,11 @@
 package com.company;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 //Main menu with all program handling options
 
 public class MainMenu {
 
-    protected MainLibrary mainLibrary = new MainLibrary(this);
-    private CheckoutLibrary checkoutLibrary = new CheckoutLibrary(this);
+    protected MainLibrary mainLibrary = new MainLibrary(this); //use this context/class to pass in
     private boolean isValidInput;
     private Scanner input = new Scanner(System.in);
 
