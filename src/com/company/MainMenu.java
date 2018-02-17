@@ -1,65 +1,92 @@
 package com.company;
 
-import java.util.Scanner;
-//Main menu with all program handling options
 
+import java.util.Scanner;
+
+
+//Main menu with all program handling options
 public class MainMenu {
 
-    protected MainLibrary mainLibrary = new MainLibrary(this); //use this context/class to pass in
-    private boolean isValidInput;
+    private Library library = new Library(this); //use this context/class to pass in
     private Scanner input = new Scanner(System.in);
 
     public void welcomePrompt() {
 
-        System.out.println("WELCOME TO THE VIDEO GAME LIBRARY!");
+        System.out.println("\nWELCOME TO THE VIDEO GAME LIBRARY!");
         startMenu();
     }
 
     //Menu prompts user for VGLibrary options
     public void startMenu() {
 
-        isValidInput = false;
+        boolean isValidInput = false;
         while (!isValidInput) {
+
             //prompt user: instructions.
-            System.out.println("\nMAIN MENU: What would you like to do?\n\n" +
+            System.out.println("\nMAIN MENU: What would you like to do?\n" +
                     "Please enter the number corresponding to your choice:\n" +
-                    "1. View the games in your main library\n" +
-                    "2. Add a game to your main library\n" +
-                    "3. Remove a game from your main library\n" +
-                    "4. View your checked out games\n" +
-                    "5. Check out a from your main library\n" +
-                    "6. Check in a game\n" +
+                    "1. Add a game to your main library\n" +
+                    "2. Remove a game from your main library\n" +
+                    "3. View the games in your main library\n" +
+                    "4. Check out a from your main library\n" +
+                    "5. Check in a game\n" +
+                    "6. View your checked out games\n" +
                     "7. Exit program");
 
             switch (input.nextLine()) {
 
-                case "1": //view main library
-                    mainLibrary.viewMainLibrary();
+                case "1": //add VG to library
+                    library.addGame();
+                    startMenu();
                     isValidInput = true;
                     break;
 
-                case "2": //add VG to library
-                    mainLibrary.addGame();
+                case "2"://remove VG from library
+                    if (library.mainLibArrayList.isEmpty()) {
+                        System.out.println("There are no games in your main library at this time.\nYou may add games to your main library from the main menu.");
+                        startMenu();
+                    }else {
+                        library.removeGame();
+                        startMenu();
+                    }
                     isValidInput = true;
                     break;
 
-                case "3": //remove VG from library
-                    mainLibrary.removeGame();
+                case "3": //view main library
+                    if (library.mainLibArrayList.isEmpty()) {
+                        System.out.println("There are no games in your main library at this time.\nYou may add games to your main library from the main menu.");
+                        startMenu();
+                    }else {
+                        library.viewMainLibrary();
+                    }
+                    startMenu();
                     isValidInput = true;
                     break;
 
-                case "4": //view checked out VGs
-                    mainLibrary.viewCheckoutLibrary();
+                case "4": //check out VG
+                    if (library.mainLibArrayList.isEmpty()) {
+                        System.out.println("There are no games in your main library at this time.\nTo check out games, you must first add games to your main library from the main menu.");
+                        startMenu();
+                    }else {
+                        library.checkOutGame();
+                    }
+                    startMenu();
                     isValidInput = true;
                     break;
 
-                case "5": //check out VG
-                    mainLibrary.checkOutGame();
+                case "5": //check in game
+                    if (library.checkoutLibArrayList.isEmpty()) {
+                        System.out.println("You have no games checked out at this time.\nYou may check out games from your main library.");
+                        startMenu();
+                    }else {
+                        library.checkInGame();
+                    }
+                    startMenu();
                     isValidInput = true;
                     break;
 
-                case "6": //check in game
-                    mainLibrary.checkInGame();
+                case "6": //view checked out VGs
+                    library.viewCheckoutLibrary();
                     isValidInput = true;
                     break;
 
@@ -68,22 +95,22 @@ public class MainMenu {
                     isValidInput = true;
                     break;
 
-                default: //incorrect user input - prompt user for correct number, loop back to MainMenu
+                default: //incorrect user input, loop back to MainMenu
                     invalidEntry();
                     isValidInput = false;
             }
         }
     }
 
-    public void exitProgram(){
+    private void exitProgram() {
 
         System.out.println("\nThank you for using the video game library.");
         System.exit(13);
     }
 
-        public void invalidEntry () {
+    private void invalidEntry() {
 
-            System.out.println("Invalid entry.");
-        }
+        System.out.println("Invalid entry.");
+    }
 
 }
