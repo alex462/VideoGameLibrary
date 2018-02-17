@@ -6,7 +6,7 @@ public class Game {
     private String title;
     private String dueDate;
 
-    protected Game(){
+    protected Game() {
 
     }
 

@@ -3,8 +3,8 @@ package com.company;
 
 import java.util.Scanner;
 
-
-//Main menu with all program handling options
+//MAIN MENU CLASS: This class holds the main menu and all its options. It has instructions for the user. Each option invokes a
+//correlating method in the Library Class.
 public class MainMenu {
 
     private Library library = new Library(this); //use this context/class to pass in
@@ -45,7 +45,7 @@ public class MainMenu {
                     if (library.mainLibArrayList.isEmpty()) {
                         System.out.println("There are no games in your main library at this time.\nYou may add games to your main library from the main menu.");
                         startMenu();
-                    }else {
+                    } else {
                         library.removeGame();
                         startMenu();
                     }
@@ -56,7 +56,7 @@ public class MainMenu {
                     if (library.mainLibArrayList.isEmpty()) {
                         System.out.println("There are no games in your main library at this time.\nYou may add games to your main library from the main menu.");
                         startMenu();
-                    }else {
+                    } else {
                         library.viewMainLibrary();
                     }
                     startMenu();
@@ -67,7 +67,7 @@ public class MainMenu {
                     if (library.mainLibArrayList.isEmpty()) {
                         System.out.println("There are no games in your main library at this time.\nTo check out games, you must first add games to your main library from the main menu.");
                         startMenu();
-                    }else {
+                    } else {
                         library.checkOutGame();
                     }
                     startMenu();
@@ -78,7 +78,7 @@ public class MainMenu {
                     if (library.checkoutLibArrayList.isEmpty()) {
                         System.out.println("You have no games checked out at this time.\nYou may check out games from your main library.");
                         startMenu();
-                    }else {
+                    } else {
                         library.checkInGame();
                     }
                     startMenu();
@@ -102,12 +102,14 @@ public class MainMenu {
         }
     }
 
+    //  method to exit program; friendly output to user confirming choice exit.
     private void exitProgram() {
 
         System.out.println("\nThank you for using the video game library.");
         System.exit(13);
     }
 
+    //method output to user explaining they have entered something incorrectly.
     private void invalidEntry() {
 
         System.out.println("Invalid entry.");
