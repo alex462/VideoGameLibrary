@@ -1,10 +1,7 @@
 package com.company;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 //LIBRARY CLASS: holds all methods stemming from main menu. These methods add/remove games, check in/out games, view both libraries.
 public class Library {
@@ -25,14 +22,17 @@ public class Library {
     protected void addGame() {
 
         System.out.println("Enter a game title to add to your main library: ");
+
         game.setTitle(input.nextLine());
         mainLibArrayList.add(game.getTitle());
+        mainLibArrayList.sort(String::compareToIgnoreCase); //arranges games in ArrayList in alphabetical order; not case-sensitive
+
         System.out.println("You have added " + game.getTitle() + " to your main library.");
 
         addAnotherGame();
     }
 
-    //method prompts user to add another game or return to main menu for more options
+        //method prompts user to add another game or return to main menu for more options
     private void addAnotherGame() {
 
         boolean isValidInput = false;
@@ -68,16 +68,38 @@ public class Library {
     protected void removeGame() {
 
         System.out.println("MAIN LIBRARY:\nEnter the number corresponding to the game you would like to remove from your main library: ");
+
         int position = 1;
-        for (int i = 0; i < mainLibArrayList.size(); i++) {
+        int i;
+        for (i = 0; i < mainLibArrayList.size(); i++) {
             System.out.println(position + ". " + mainLibArrayList.get(i) + " ");
             position++;
         }
-        String tempGame = mainLibArrayList.get(input.nextInt() - 1);
-        System.out.println(tempGame + " has been removed from your main library.");
-        mainLibArrayList.remove(tempGame);
+//            while(true){
+                try{
+                    i = Integer.parseInt(input.next());
+//                    break;
+                }catch(NumberFormatException ignore){
+                    invalidEntry();
+                    removeGame();
+                }
+//            }
+        if(input.nextInt() >= i || input.nextInt() <= 0){
+            invalidEntry();
+            removeGame();
 
-        removeAnotherGame();
+        }else {
+
+            String tempGame = mainLibArrayList.get(input.nextInt() - 1);
+            System.out.println(tempGame + " has been removed from your main library.");
+            mainLibArrayList.remove(tempGame);
+
+            removeAnotherGame();
+        }
+
+
+
+
     }
 
     //method runs after removeGame(); prompts user to remove another or return to main menu
@@ -117,6 +139,7 @@ input.nextLine();
             }
 
         }else{
+
             mainMenu.startMenu();
         }
     }
@@ -150,6 +173,7 @@ input.nextLine();
 
         mainLibArrayList.remove(tempGame);
         checkoutLibArrayList.add(tempGame);
+        checkoutLibArrayList.sort(String::compareToIgnoreCase); //arranges games in ArrayList in alphabetical order; not case-sensitive
 
         calendar.add(Calendar.DAY_OF_YEAR, 5);
         System.out.println("It is due back in 5 days' time: " + dateFormat.format(calendar.getTime()));
@@ -214,6 +238,7 @@ input.nextLine();
 
         checkoutLibArrayList.remove(tempGame);
         mainLibArrayList.add(tempGame);
+        mainLibArrayList.sort(String::compareToIgnoreCase); //arranges games in ArrayList in alphabetical order; not case-sensitive
 
             checkInAnotherGame();
     }
