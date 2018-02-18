@@ -77,43 +77,44 @@ public class Library {
         System.out.println(tempGame + " has been removed from your main library.");
         mainLibArrayList.remove(tempGame);
 
-        if (mainLibArrayList.isEmpty()) {//removeAnotherGame only runs if user still has games in main library after removing game.
-            mainMenu.startMenu();
-        } else {
-            removeAnotherGame();
-        }
+        removeAnotherGame();
     }
 
     //method runs after removeGame(); prompts user to remove another or return to main menu
     private void removeAnotherGame() {
 
-        boolean isValidInput = false;
-        while (!isValidInput) {
+        if (!mainLibArrayList.isEmpty()) {
+input.nextLine();
+            boolean isValidInput = false;
+            while (!isValidInput) {
 
-            System.out.println("Would you like to remove another game from your main library?");
-            System.out.println("1. Yes\n2. No; return to main menu\n3. Exit program");
+                System.out.println("Would you like to remove another game from your main library?");
+                System.out.println("1. Yes\n2. No; return to main menu\n3. Exit program");
 
-            switch (input.nextLine()) {
+                switch (input.nextLine()) {
 
-                case "1": //yes
-                    removeGame();
-                    isValidInput = true;
-                    break;
+                    case "1": //yes
+                        removeGame();
+                        isValidInput = true;
+                        break;
 
-                case "2": //no; main menu
-                    mainMenu.startMenu();
-                    isValidInput = true;
-                    break;
+                    case "2": //no; main menu
+                        mainMenu.startMenu();
+                        isValidInput = true;
+                        break;
 
-                case "3": //exit
-                    exitProgram();
-                    isValidInput = true;
-                    break;
+                    case "3": //exit
+                        exitProgram();
+                        isValidInput = true;
+                        break;
 
-                default: //incorrect user input - prompt user for correct number, loop back to MainMenu
-                    invalidEntry();
-                    isValidInput = false;
+                    default: //incorrect user input - prompt user for correct number, loop back to MainMenu
+                        invalidEntry();
+                        isValidInput = false;
+                }
             }
+        }else{
+            mainMenu.startMenu();
         }
     }
 

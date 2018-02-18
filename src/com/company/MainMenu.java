@@ -86,7 +86,12 @@ public class MainMenu {
                     break;
 
                 case "6": //view checked out VGs
-                    library.viewCheckoutLibrary();
+                    if (library.checkoutLibArrayList.isEmpty()) {
+                        System.out.println("You have no games checked out at this time.\nYou may check out games from your main library.");
+                    }else {
+                        library.viewCheckoutLibrary();
+                    }
+                    startMenu();
                     isValidInput = true;
                     break;
 
