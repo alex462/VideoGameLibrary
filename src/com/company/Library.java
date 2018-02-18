@@ -83,8 +83,10 @@ public class Library {
     //method runs after removeGame(); prompts user to remove another or return to main menu
     private void removeAnotherGame() {
 
-        if (!mainLibArrayList.isEmpty()) {
+        if (!mainLibArrayList.isEmpty()) { //removeAnotherGame only runs if user still has games in main library after removing game.
+
 input.nextLine();
+
             boolean isValidInput = false;
             while (!isValidInput) {
 
@@ -113,6 +115,7 @@ input.nextLine();
                         isValidInput = false;
                 }
             }
+
         }else{
             mainMenu.startMenu();
         }
@@ -152,43 +155,47 @@ input.nextLine();
         System.out.println("It is due back in 5 days' time: " + dateFormat.format(calendar.getTime()));
         game.setDueDate(dateFormat.format(calendar.getTime()));
 
-        if (mainLibArrayList.isEmpty()) {//checkOutAnotherGame only runs if user still has games in main library after checking out game.
-            mainMenu.startMenu();
-        } else {
-            checkOutAnotherGame();
-        }
+        checkOutAnotherGame();
     }
 
     //method runs after checkOutGame(); prompts user to check out another or return to main menu
     private void checkOutAnotherGame() {
 
-        boolean isValidInput = false;
-        while (!isValidInput) {
+        if (!mainLibArrayList.isEmpty()) { //checkOutAnotherGame only runs if user still has games in main library after checking out game.
 
-            System.out.println("Would you like to check out another game from your main library?");
-            System.out.println("1. Yes\n2. No; return to main menu\n3. Exit program");
+            input.nextLine();
 
-            switch (input.nextLine()) {
+            boolean isValidInput = false;
+            while (!isValidInput) {
 
-                case "1": //yes
-                    checkOutGame();
-                    isValidInput = true;
-                    break;
+                System.out.println("Would you like to check out another game from your main library?");
+                System.out.println("1. Yes\n2. No; return to main menu\n3. Exit program");
 
-                case "2": //no; main menu
-                    mainMenu.startMenu();
-                    isValidInput = true;
-                    break;
+                switch (input.nextLine()) {
 
-                case "3": //exit
-                    exitProgram();
-                    isValidInput = true;
-                    break;
+                    case "1": //yes
+                        checkOutGame();
+                        isValidInput = true;
+                        break;
 
-                default: //incorrect user input - prompt user for correct number, loop back to MainMenu
-                    invalidEntry();
-                    isValidInput = false;
+                    case "2": //no; main menu
+                        mainMenu.startMenu();
+                        isValidInput = true;
+                        break;
+
+                    case "3": //exit
+                        exitProgram();
+                        isValidInput = true;
+                        break;
+
+                    default: //incorrect user input - prompt user for correct number, loop back to MainMenu
+                        invalidEntry();
+                        isValidInput = false;
+                }
             }
+
+        }else{
+            mainMenu.startMenu();
         }
     }
 
@@ -208,43 +215,47 @@ input.nextLine();
         checkoutLibArrayList.remove(tempGame);
         mainLibArrayList.add(tempGame);
 
-        if (checkoutLibArrayList.isEmpty()) { //checkInAnotherGame only runs if user still has games in checkout library after checking in game.
-            mainMenu.startMenu();
-        } else {
             checkInAnotherGame();
-        }
     }
 
     //method runs after checkInGame(); prompts user to check in another or return to main menu
     private void checkInAnotherGame() {
 
-        boolean isValidInput = false;
-        while (!isValidInput) {
+        if (!checkoutLibArrayList.isEmpty()) { //checkInAnotherGame only runs if user still has games in checkout library after checking in game.
 
-            System.out.println("Would you like to check in another game to your main library?");
-            System.out.println("1. Yes\n2. No; return to main menu\n3. Exit program");
+            input.nextLine();
 
-            switch (input.nextLine()) {
+            boolean isValidInput = false;
+            while (!isValidInput) {
 
-                case "1": //yes
-                    checkInGame();
-                    isValidInput = true;
-                    break;
+                System.out.println("Would you like to check in another game to your main library?");
+                System.out.println("1. Yes\n2. No; return to main menu\n3. Exit program");
 
-                case "2": //no; main menu
-                    mainMenu.startMenu();
-                    isValidInput = true;
-                    break;
+                switch (input.nextLine()) {
 
-                case "3": //exit
-                    exitProgram();
-                    isValidInput = true;
-                    break;
+                    case "1": //yes
+                        checkInGame();
+                        isValidInput = true;
+                        break;
 
-                default: //incorrect user input - prompt user for correct number, loop back to MainMenu
-                    invalidEntry();
-                    isValidInput = false;
+                    case "2": //no; main menu
+                        mainMenu.startMenu();
+                        isValidInput = true;
+                        break;
+
+                    case "3": //exit
+                        exitProgram();
+                        isValidInput = true;
+                        break;
+
+                    default: //incorrect user input - prompt user for correct number, loop back to MainMenu
+                        invalidEntry();
+                        isValidInput = false;
+                }
             }
+
+        }else{
+            mainMenu.startMenu();
         }
     }
 
