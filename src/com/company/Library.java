@@ -75,31 +75,12 @@ public class Library {
             System.out.println(position + ". " + mainLibArrayList.get(i) + " ");
             position++;
         }
-//            while(true){
-                try{
-                    i = Integer.parseInt(input.next());
-//                    break;
-                }catch(NumberFormatException ignore){
-                    invalidEntry();
-                    removeGame();
-                }
-//            }
-        if(input.nextInt() >= i || input.nextInt() <= 0){
-            invalidEntry();
-            removeGame();
-
-        }else {
 
             String tempGame = mainLibArrayList.get(input.nextInt() - 1);
             System.out.println(tempGame + " has been removed from your main library.");
             mainLibArrayList.remove(tempGame);
 
             removeAnotherGame();
-        }
-
-
-
-
     }
 
     //method runs after removeGame(); prompts user to remove another or return to main menu
