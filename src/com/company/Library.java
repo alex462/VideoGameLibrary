@@ -29,41 +29,10 @@ public class Library {
 
         System.out.println("You have added " + game.getTitle() + " to your main library.");
 
-        addAnotherGame();
+        mainMenu.startMenu();
     }
 
-        //method prompts user to add another game or return to main menu for more options
-    private void addAnotherGame() {
-
-        boolean isValidInput = false;
-        while (!isValidInput) {
-
-            System.out.println("Would you like to add another game?");
-            System.out.println("1. Yes\n2. No; return to main menu\n3. Exit program");
-
-            switch (input.nextLine()) {
-
-                case "1": //yes
-                    addGame();
-                    isValidInput = true;
-                    break;
-
-                case "2": //no; main menu
-                    mainMenu.startMenu();
-                    isValidInput = true;
-                    break;
-
-                case "3": //exit
-                    exitProgram();
-                    isValidInput = true;
-                    break;
-
-                default: //incorrect user input - prompt user for correct number, loop back to MainMenu
-                    invalidEntry();
-                    isValidInput = false;
-            }
-        }
-    }
+    //method prompts user to add another game or return to main menu for more options
 
     protected void removeGame() {
 
@@ -76,53 +45,11 @@ public class Library {
             position++;
         }
 
-            String tempGame = mainLibArrayList.get(input.nextInt() - 1);
-            System.out.println(tempGame + " has been removed from your main library.");
-            mainLibArrayList.remove(tempGame);
+        String tempGame = mainLibArrayList.get(input.nextInt() - 1);
+        System.out.println(tempGame + " has been removed from your main library.");
+        mainLibArrayList.remove(tempGame);
 
-            removeAnotherGame();
-    }
-
-    //method runs after removeGame(); prompts user to remove another or return to main menu
-    private void removeAnotherGame() {
-
-        if (!mainLibArrayList.isEmpty()) { //removeAnotherGame only runs if user still has games in main library after removing game.
-
-input.nextLine();
-
-            boolean isValidInput = false;
-            while (!isValidInput) {
-
-                System.out.println("Would you like to remove another game from your main library?");
-                System.out.println("1. Yes\n2. No; return to main menu\n3. Exit program");
-
-                switch (input.nextLine()) {
-
-                    case "1": //yes
-                        removeGame();
-                        isValidInput = true;
-                        break;
-
-                    case "2": //no; main menu
-                        mainMenu.startMenu();
-                        isValidInput = true;
-                        break;
-
-                    case "3": //exit
-                        exitProgram();
-                        isValidInput = true;
-                        break;
-
-                    default: //incorrect user input - prompt user for correct number, loop back to MainMenu
-                        invalidEntry();
-                        isValidInput = false;
-                }
-            }
-
-        }else{
-
-            mainMenu.startMenu();
-        }
+        mainMenu.startMenu();
     }
 
     //method to view all games currently in user's main library
@@ -160,49 +87,9 @@ input.nextLine();
         System.out.println("It is due back in 5 days' time: " + dateFormat.format(calendar.getTime()));
         game.setDueDate(dateFormat.format(calendar.getTime()));
 
-        checkOutAnotherGame();
+        mainMenu.startMenu();
     }
 
-    //method runs after checkOutGame(); prompts user to check out another or return to main menu
-    private void checkOutAnotherGame() {
-
-        if (!mainLibArrayList.isEmpty()) { //checkOutAnotherGame only runs if user still has games in main library after checking out game.
-
-            input.nextLine();
-
-            boolean isValidInput = false;
-            while (!isValidInput) {
-
-                System.out.println("Would you like to check out another game from your main library?");
-                System.out.println("1. Yes\n2. No; return to main menu\n3. Exit program");
-
-                switch (input.nextLine()) {
-
-                    case "1": //yes
-                        checkOutGame();
-                        isValidInput = true;
-                        break;
-
-                    case "2": //no; main menu
-                        mainMenu.startMenu();
-                        isValidInput = true;
-                        break;
-
-                    case "3": //exit
-                        exitProgram();
-                        isValidInput = true;
-                        break;
-
-                    default: //incorrect user input - prompt user for correct number, loop back to MainMenu
-                        invalidEntry();
-                        isValidInput = false;
-                }
-            }
-
-        }else{
-            mainMenu.startMenu();
-        }
-    }
 
     //method to check in a game. Only runs if they have 1+ game/s in their checkout library.
     protected void checkInGame() {
@@ -221,49 +108,9 @@ input.nextLine();
         mainLibArrayList.add(tempGame);
         mainLibArrayList.sort(String::compareToIgnoreCase); //arranges games in ArrayList in alphabetical order; not case-sensitive
 
-            checkInAnotherGame();
+        mainMenu.startMenu();
     }
 
-    //method runs after checkInGame(); prompts user to check in another or return to main menu
-    private void checkInAnotherGame() {
-
-        if (!checkoutLibArrayList.isEmpty()) { //checkInAnotherGame only runs if user still has games in checkout library after checking in game.
-
-            input.nextLine();
-
-            boolean isValidInput = false;
-            while (!isValidInput) {
-
-                System.out.println("Would you like to check in another game to your main library?");
-                System.out.println("1. Yes\n2. No; return to main menu\n3. Exit program");
-
-                switch (input.nextLine()) {
-
-                    case "1": //yes
-                        checkInGame();
-                        isValidInput = true;
-                        break;
-
-                    case "2": //no; main menu
-                        mainMenu.startMenu();
-                        isValidInput = true;
-                        break;
-
-                    case "3": //exit
-                        exitProgram();
-                        isValidInput = true;
-                        break;
-
-                    default: //incorrect user input - prompt user for correct number, loop back to MainMenu
-                        invalidEntry();
-                        isValidInput = false;
-                }
-            }
-
-        }else{
-            mainMenu.startMenu();
-        }
-    }
 
     //method to view all games currently checked out by user
     protected void viewCheckoutLibrary() {
@@ -276,19 +123,6 @@ input.nextLine();
             position++;
         }
         mainMenu.startMenu();
-    }
-
-    //method to exit program; friendly output to user confirming choice exit.
-    private void exitProgram() {
-
-        System.out.println("\nThank you for using the video game library.");
-        System.exit(13);
-    }
-
-    //method output to user explaining they have entered something incorrectly.
-    private void invalidEntry() {
-
-        System.out.println("Invalid entry.");
     }
 
 }
