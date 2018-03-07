@@ -1,7 +1,10 @@
 package com.company;
 
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+import java.util.Scanner;
 
 //LIBRARY CLASS: holds all methods stemming from main menu. These methods add/remove games, check in/out games, view both libraries.
 public class Library {
